@@ -1,0 +1,217 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id              String    @id @default(cuid())
+  name            String?
+  email           String    @unique
+  emailVerified   DateTime?
+  image           String?
+  password        String?
+  role            String    @default("BUYER")
+  bio             String?
+  location        String?
+  verified        Boolean   @default(false)
+  verifiedSeller  Boolean   @default(false)
+  stripeAccountId String?
+  successfulSales Int       @default(0)
+  totalPurchases  Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  accounts        Account[]
+  sessions        Session[]
+  grailRequests   GrailRequest[]
+  offers          Offer[]
+  ratingsGiven    Rating[]  @relation("RatingGiver")
+  ratingsReceived Rating[]  @relation("RatingReceiver")
+  sentMessages    Message[] @relation("MessageSender")
+  notifications   Notification[]
+  savedOffers     SavedOffer[]
+  inventory       InventoryItem[]
+  following       Follow[]        @relation("Follower")
+  followers       Follow[]        @relation("Following")
+  specialties     String          @default("[]")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model GrailRequest {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  category    String
+  condition   String
+  budgetMin   Float
+  budgetMax   Float
+  images      String   @default("[]")
+  status      String   @default("ACTIVE")
+  views       Int      @default(0)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  offers      Offer[]
+  savedBy     SavedOffer[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Offer {
+  id             String       @id @default(cuid())
+  price          Float
+  description    String
+  condition      String
+  images         String       @default("[]")
+  status         String       @default("PENDING")
+  counterPrice   Float?
+  counterNote    String?
+  grailRequestId String
+  grailRequest   GrailRequest @relation(fields: [grailRequestId], references: [id], onDelete: Cascade)
+  sellerId       String
+  seller         User         @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  paymentIntentId String?
+  transaction    Transaction?
+  conversation   Conversation?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model Transaction {
+  id              String   @id @default(cuid())
+  offerId         String   @unique
+  offer           Offer    @relation(fields: [offerId], references: [id])
+  amount          Float
+  platformFee     Float
+  sellerPayout    Float
+  status          String   @default("PENDING")
+  stripePaymentId String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Conversation {
+  id        String    @id @default(cuid())
+  offerId   String    @unique
+  offer     Offer     @relation(fields: [offerId], references: [id])
+  messages  Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  content        String
+  senderId       String
+  sender         User         @relation("MessageSender", fields: [senderId], references: [id])
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  read           Boolean      @default(false)
+  createdAt      DateTime     @default(now())
+}
+
+model Rating {
+  id         String   @id @default(cuid())
+  score      Int
+  comment    String?
+  giverId    String
+  giver      User     @relation("RatingGiver", fields: [giverId], references: [id])
+  receiverId String
+  receiver   User     @relation("RatingReceiver", fields: [receiverId], references: [id])
+  createdAt  DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  type      String
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  link      String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model SavedOffer {
+  id             String       @id @default(cuid())
+  userId         String
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  grailRequestId String
+  grailRequest   GrailRequest @relation(fields: [grailRequestId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@unique([userId, grailRequestId])
+}
+
+model InventoryItem {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  category    String
+  condition   String
+  price       Float
+  images      String   @default("[]")
+  available   Boolean  @default(true)
+  sellerId    String
+  seller      User     @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Follow {
+  id          String   @id @default(cuid())
+  followerId  String
+  follower    User     @relation("Follower", fields: [followerId], references: [id], onDelete: Cascade)
+  followingId String
+  following   User     @relation("Following", fields: [followingId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  @@unique([followerId, followingId])
+}
+
+model SearchAlert {
+  id        String   @id @default(cuid())
+  keywords  String
+  category  String   @default("")
+  budgetMin Float?
+  budgetMax Float?
+  userId    String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
