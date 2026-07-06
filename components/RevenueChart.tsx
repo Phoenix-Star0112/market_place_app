@@ -10,7 +10,7 @@ interface Props {
   color?: string
 }
 
-export function RevenueChart({ data, title = "Revenue", color = "#eab308" }: Props) {
+export function RevenueChart({ data, title = "Revenue", color = "#f97316" }: Props) {
   if (!data.length) return null
 
   const max = Math.max(...data.map((d) => d.value), 1)
@@ -29,7 +29,7 @@ export function RevenueChart({ data, title = "Revenue", color = "#eab308" }: Pro
 
   return (
     <div>
-      {title && <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">{title}</p>}
+      {title && <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">{title}</p>}
       <div className="relative">
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" preserveAspectRatio="none" style={{ height: 80 }}>
           <defs>
@@ -47,7 +47,7 @@ export function RevenueChart({ data, title = "Revenue", color = "#eab308" }: Pro
         {/* X-axis labels */}
         <div className="flex justify-between mt-1">
           {data.map((d) => (
-            <span key={d.label} className="text-[9px] text-slate-400">{d.label}</span>
+            <span key={d.label} className="text-[9px] text-neutral-500">{d.label}</span>
           ))}
         </div>
       </div>

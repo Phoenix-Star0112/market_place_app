@@ -31,8 +31,8 @@ export function ImageGallery({ images, title, thumbnailClass }: ImageGalleryProp
 
   if (images.length === 0) {
     return (
-      <div className={`flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-50 rounded-xl ${thumbnailClass ?? "h-56"}`}>
-        <Trophy className="w-12 h-12 text-slate-300" />
+      <div className={`flex items-center justify-center bg-gradient-to-br from-neutral-900 to-neutral-950 rounded-xl ${thumbnailClass ?? "h-56"}`}>
+        <Trophy className="w-12 h-12 text-neutral-700" />
       </div>
     )
   }
@@ -41,7 +41,7 @@ export function ImageGallery({ images, title, thumbnailClass }: ImageGalleryProp
     <>
       {/* Main image */}
       <div
-        className={`relative group cursor-zoom-in overflow-hidden rounded-xl bg-slate-100 ${thumbnailClass ?? "h-56"}`}
+        className={`relative group cursor-zoom-in overflow-hidden rounded-xl bg-neutral-900 ${thumbnailClass ?? "h-56"}`}
         onClick={() => openLightbox(mainIndex)}
       >
         <img src={images[mainIndex]} alt={title} className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500" />
@@ -63,7 +63,7 @@ export function ImageGallery({ images, title, thumbnailClass }: ImageGalleryProp
               key={i}
               onClick={() => setMainIndex(i)}
               className={`w-14 h-14 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
-                i === mainIndex ? "border-yellow-400 scale-105" : "border-transparent opacity-60 hover:opacity-100"
+                i === mainIndex ? "border-orange-500 scale-105" : "border-transparent opacity-60 hover:opacity-100"
               }`}
             >
               <img src={src} alt="" className="w-full h-full object-cover" />

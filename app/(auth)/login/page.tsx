@@ -44,13 +44,13 @@ function LoginForm() {
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-      <h1 className="text-2xl font-bold text-slate-900 mb-1">Welcome back</h1>
-      <p className="text-slate-500 text-sm mb-6">Sign in to your account to continue</p>
+    <div className="bg-neutral-900 rounded-2xl border border-neutral-800 shadow-sm p-8">
+      <h1 className="text-2xl font-bold text-white mb-1">Welcome back</h1>
+      <p className="text-neutral-500 text-sm mb-6">Sign in to your account to continue</p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1.5" htmlFor="email">
+          <label className="block text-sm font-medium text-neutral-300 mb-1.5" htmlFor="email">
             Email address
           </label>
           <input
@@ -66,10 +66,10 @@ function LoginForm() {
 
         <div>
           <div className="flex items-center justify-between mb-1.5">
-            <label className="block text-sm font-medium text-slate-700" htmlFor="password">
+            <label className="block text-sm font-medium text-neutral-300" htmlFor="password">
               Password
             </label>
-            <Link href="/forgot-password" className="text-xs text-yellow-600 hover:text-yellow-700">
+            <Link href="/forgot-password" className="text-xs text-orange-500 hover:text-orange-400">
               Forgot password?
             </Link>
           </div>
@@ -86,7 +86,7 @@ function LoginForm() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300"
             >
               {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
             </button>
@@ -96,16 +96,16 @@ function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-yellow-400 text-slate-900 font-semibold hover:bg-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-orange-500 text-white font-semibold hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {loading && <Loader2 className="w-4 h-4 animate-spin" />}
           {loading ? "Signing in..." : "Sign In"}
         </button>
       </form>
 
-      <p className="text-center text-sm text-slate-500 mt-6">
+      <p className="text-center text-sm text-neutral-500 mt-6">
         Don&apos;t have an account?{" "}
-        <Link href="/register" className="text-yellow-600 font-medium hover:text-yellow-700">
+        <Link href="/register" className="text-orange-500 font-medium hover:text-orange-400">
           Create one free
         </Link>
       </p>
@@ -115,17 +115,17 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-neutral-950 flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 font-bold text-xl text-slate-900">
-            <div className="w-9 h-9 bg-yellow-400 rounded-xl flex items-center justify-center">
-              <Trophy className="w-5 h-5 text-yellow-900" />
+          <Link href="/" className="inline-flex items-center gap-2 font-bold text-xl text-white">
+            <div className="w-9 h-9 bg-orange-500 rounded-xl flex items-center justify-center">
+              <Trophy className="w-5 h-5 text-white" />
             </div>
             GrailMarket
           </Link>
         </div>
-        <Suspense fallback={<div className="h-64 bg-white rounded-2xl border border-slate-200 animate-pulse" />}>
+        <Suspense fallback={<div className="h-64 bg-neutral-900 rounded-2xl border border-neutral-800 animate-pulse" />}>
           <LoginForm />
         </Suspense>
       </div>

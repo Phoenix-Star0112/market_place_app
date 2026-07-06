@@ -5,15 +5,15 @@ export default function HowItWorksPage() {
   return (
     <div className="py-16 page-container max-w-4xl">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-slate-900 mb-4">How GrailMarket Works</h1>
-        <p className="text-lg text-slate-500">
+        <h1 className="text-4xl font-bold text-white mb-4">How GrailMarket Works</h1>
+        <p className="text-lg text-neutral-500">
           The smarter way to buy and sell rare collectibles
         </p>
       </div>
 
       {/* For Buyers */}
       <section className="mb-14">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6 pb-3 border-b border-slate-200">
+        <h2 className="text-2xl font-bold text-white mb-6 pb-3 border-b border-neutral-800">
           For Buyers
         </h2>
         <div className="space-y-4">
@@ -24,14 +24,14 @@ export default function HowItWorksPage() {
             { icon: ShieldCheck, step: "4", title: "Pay Securely", desc: "Payment is processed through Stripe's secure platform and held in escrow. Funds are only released when you confirm receipt." },
             { icon: CheckCircle, step: "5", title: "Rate Your Seller", desc: "After completing the transaction, leave a rating. Your feedback helps build the community's trust." },
           ].map((item) => (
-            <div key={item.step} className="flex gap-4 bg-white rounded-xl border border-slate-200 p-5">
-              <div className="w-10 h-10 rounded-xl bg-yellow-50 border-2 border-yellow-200 flex items-center justify-center flex-shrink-0">
-                <item.icon className="w-5 h-5 text-yellow-600" />
+            <div key={item.step} className="flex gap-4 bg-neutral-900 rounded-xl border border-neutral-800 p-5">
+              <div className="w-10 h-10 rounded-xl bg-orange-500/10 border-2 border-orange-500/20 flex items-center justify-center flex-shrink-0">
+                <item.icon className="w-5 h-5 text-orange-500" />
               </div>
               <div>
-                <div className="text-xs text-yellow-600 font-bold tracking-widest mb-1">STEP {item.step}</div>
-                <h3 className="font-semibold text-slate-900 mb-1">{item.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                <div className="text-xs text-orange-500 font-bold tracking-widest mb-1">STEP {item.step}</div>
+                <h3 className="font-semibold text-white mb-1">{item.title}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">{item.desc}</p>
               </div>
             </div>
           ))}
@@ -40,7 +40,7 @@ export default function HowItWorksPage() {
 
       {/* For Sellers */}
       <section className="mb-14">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6 pb-3 border-b border-slate-200">
+        <h2 className="text-2xl font-bold text-white mb-6 pb-3 border-b border-neutral-800">
           For Sellers
         </h2>
         <div className="space-y-4">
@@ -50,14 +50,14 @@ export default function HowItWorksPage() {
             { icon: CheckCircle, step: "3", title: "Negotiate & Close", desc: "Message the buyer, answer questions, and agree on details. Once they accept, payment is initiated." },
             { icon: DollarSign, step: "4", title: "Get Paid", desc: "After the buyer confirms receipt, funds are released to your Stripe account. GrailMarket keeps 9% as a platform fee." },
           ].map((item) => (
-            <div key={item.step} className="flex gap-4 bg-white rounded-xl border border-slate-200 p-5">
+            <div key={item.step} className="flex gap-4 bg-neutral-900 rounded-xl border border-neutral-800 p-5">
               <div className="w-10 h-10 rounded-xl bg-green-50 border-2 border-green-200 flex items-center justify-center flex-shrink-0">
                 <item.icon className="w-5 h-5 text-green-600" />
               </div>
               <div>
                 <div className="text-xs text-green-600 font-bold tracking-widest mb-1">STEP {item.step}</div>
-                <h3 className="font-semibold text-slate-900 mb-1">{item.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                <h3 className="font-semibold text-white mb-1">{item.title}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">{item.desc}</p>
               </div>
             </div>
           ))}
@@ -65,14 +65,14 @@ export default function HowItWorksPage() {
       </section>
 
       {/* CTA */}
-      <div className="bg-slate-900 rounded-2xl p-8 text-center text-white">
+      <div className="bg-neutral-800 rounded-2xl p-8 text-center text-white">
         <h2 className="text-2xl font-bold mb-3">Ready to get started?</h2>
-        <p className="text-slate-400 mb-6">Join thousands of collectors on GrailMarket today</p>
+        <p className="text-neutral-500 mb-6">Join thousands of collectors on GrailMarket today</p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Link href="/register" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-yellow-400 text-slate-900 font-semibold hover:bg-yellow-300 transition-colors">
+          <Link href="/register" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-orange-500 text-white font-semibold hover:bg-orange-400 transition-colors">
             Create Free Account <ArrowRight className="w-4 h-4" />
           </Link>
-          <Link href="/grails" className="inline-flex items-center px-6 py-3 rounded-lg border border-slate-600 text-white font-semibold hover:bg-slate-800 transition-colors">
+          <Link href="/grails" className="inline-flex items-center px-6 py-3 rounded-lg border border-neutral-700 text-white font-semibold hover:bg-neutral-900 transition-colors">
             Browse Requests
           </Link>
         </div>

@@ -20,15 +20,15 @@ interface Props {
 export function MarketPulse({ data, compact = false }: Props) {
   const { priceChange } = data
   const TrendIcon = priceChange > 3 ? TrendingUp : priceChange < -3 ? TrendingDown : Minus
-  const trendColor = priceChange > 3 ? "text-green-600" : priceChange < -3 ? "text-red-500" : "text-slate-500"
-  const trendBg = priceChange > 3 ? "bg-green-50" : priceChange < -3 ? "bg-red-50" : "bg-slate-50"
+  const trendColor = priceChange > 3 ? "text-green-600" : priceChange < -3 ? "text-red-500" : "text-neutral-500"
+  const trendBg = priceChange > 3 ? "bg-green-50" : priceChange < -3 ? "bg-red-50" : "bg-neutral-800"
 
   if (compact) {
     return (
-      <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-100">
-        <BarChart3 className="w-3.5 h-3.5 text-slate-400" />
-        <span className="text-xs text-slate-600">
-          Market avg: <strong className="text-slate-900">{formatCurrency(data.avgPrice)}</strong>
+      <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-900 border border-neutral-800">
+        <BarChart3 className="w-3.5 h-3.5 text-neutral-500" />
+        <span className="text-xs text-neutral-400">
+          Market avg: <strong className="text-white">{formatCurrency(data.avgPrice)}</strong>
         </span>
         <span className={`flex items-center gap-0.5 text-xs font-medium ${trendColor}`}>
           <TrendIcon className="w-3 h-3" />
@@ -39,43 +39,43 @@ export function MarketPulse({ data, compact = false }: Props) {
   }
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 p-4">
+    <div className="bg-neutral-900 rounded-xl border border-neutral-800 p-4">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="font-semibold text-slate-900 text-sm flex items-center gap-1.5">
-          <BarChart3 className="w-4 h-4 text-yellow-500" /> Market Pulse
+        <h3 className="font-semibold text-white text-sm flex items-center gap-1.5">
+          <BarChart3 className="w-4 h-4 text-orange-500" /> Market Pulse
         </h3>
         <span className="text-lg">{data.hotness}</span>
       </div>
       <dl className="space-y-3 text-sm">
         <div className="flex justify-between items-center">
-          <dt className="text-slate-500">Avg market price</dt>
-          <dd className="font-semibold text-slate-900">{formatCurrency(data.avgPrice)}</dd>
+          <dt className="text-neutral-500">Avg market price</dt>
+          <dd className="font-semibold text-white">{formatCurrency(data.avgPrice)}</dd>
         </div>
         <div className="flex justify-between items-center">
-          <dt className="text-slate-500">Price trend (30d)</dt>
+          <dt className="text-neutral-500">Price trend (30d)</dt>
           <dd className={`flex items-center gap-1 font-medium px-2 py-0.5 rounded-full text-xs ${trendColor} ${trendBg}`}>
             <TrendIcon className="w-3 h-3" />
             {priceChange > 0 ? "+" : ""}{priceChange.toFixed(1)}%
           </dd>
         </div>
         <div className="flex justify-between items-center">
-          <dt className="text-slate-500">Active grails</dt>
-          <dd className="font-semibold text-slate-900">{data.activeGrails}</dd>
+          <dt className="text-neutral-500">Active grails</dt>
+          <dd className="font-semibold text-white">{data.activeGrails}</dd>
         </div>
         <div className="flex justify-between items-center">
-          <dt className="text-slate-500">Sold this month</dt>
-          <dd className="font-semibold text-slate-900">{data.completedThisMonth}</dd>
+          <dt className="text-neutral-500">Sold this month</dt>
+          <dd className="font-semibold text-white">{data.completedThisMonth}</dd>
         </div>
       </dl>
 
       {/* Simple sparkline (pure CSS bars) */}
-      <div className="mt-4 pt-3 border-t border-slate-100">
-        <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-2">6-month price trend</p>
+      <div className="mt-4 pt-3 border-t border-neutral-800">
+        <p className="text-[10px] text-neutral-500 font-semibold uppercase tracking-wider mb-2">6-month price trend</p>
         <div className="flex items-end gap-1 h-10">
           {generateSparkline(data.avgPrice, data.priceChange).map((h, i) => (
             <div
               key={i}
-              className={`flex-1 rounded-sm transition-all ${i === 5 ? "bg-yellow-400" : "bg-slate-200"}`}
+              className={`flex-1 rounded-sm transition-all ${i === 5 ? "bg-orange-500" : "bg-neutral-700"}`}
               style={{ height: `${h}%` }}
             />
           ))}

@@ -130,16 +130,16 @@ export default async function SellerDashboardPage() {
       {/* ── Header ─────────────────────────────────────────────────────── */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+          <h1 className="text-2xl font-bold text-white">
             Seller Analytics
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
+          <p className="text-neutral-500 text-sm mt-1">
             Track your offers, revenue, and reputation
           </p>
         </div>
         <Link
           href="/grails"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-400 text-slate-900 font-semibold text-sm hover:bg-yellow-300 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-500 text-white font-semibold text-sm hover:bg-orange-400 transition-colors"
         >
           Browse Requests
         </Link>
@@ -147,19 +147,19 @@ export default async function SellerDashboardPage() {
 
       {/* ── Verification banner ─────────────────────────────────────────── */}
       {!session.user.verifiedSeller && (
-        <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-xl p-4 mb-6 flex items-center gap-3">
-          <ShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+        <div className="bg-blue-950 border border-blue-800 rounded-xl p-4 mb-6 flex items-center gap-3">
+          <ShieldCheck className="w-5 h-5 text-blue-400 flex-shrink-0" />
           <div className="flex-1">
-            <p className="text-sm font-medium text-blue-900 dark:text-blue-200">
+            <p className="text-sm font-medium text-blue-200">
               Get Verified Seller status
             </p>
-            <p className="text-xs text-blue-700 dark:text-blue-400">
+            <p className="text-xs text-blue-400">
               Verified sellers get 40% more offers accepted
             </p>
           </div>
           <Link
             href="/verify"
-            className="text-xs font-semibold text-blue-700 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-100"
+            className="text-xs font-semibold text-blue-300 hover:text-blue-100"
           >
             Get Verified →
           </Link>
@@ -177,7 +177,7 @@ export default async function SellerDashboardPage() {
                 ? "same as last month"
                 : `${momChange > 0 ? "+" : ""}${momChange}% vs last month`,
             icon: TrendingUp,
-            color: "text-purple-600 bg-purple-50 dark:bg-purple-950 dark:text-purple-300",
+            color: "text-purple-300 bg-purple-950",
           },
           {
             label: "Total Earned",
@@ -186,39 +186,39 @@ export default async function SellerDashboardPage() {
             ),
             sub: `${completedCount} completed`,
             icon: DollarSign,
-            color: "text-green-600 bg-green-50 dark:bg-green-950 dark:text-green-300",
+            color: "text-green-300 bg-green-950",
           },
           {
             label: "Active Offers",
             value: pendingCount + counteredCount,
             sub: `${counteredCount} countered`,
             icon: Clock,
-            color: "text-yellow-600 bg-yellow-50 dark:bg-yellow-950 dark:text-yellow-300",
+            color: "text-orange-300 bg-orange-950",
           },
           {
             label: "Total Offers",
             value: allOffers.length,
             sub: `${declinedCount} declined`,
             icon: Package,
-            color: "text-blue-600 bg-blue-50 dark:bg-blue-950 dark:text-blue-300",
+            color: "text-blue-300 bg-blue-950",
           },
         ].map((stat) => (
           <div
             key={stat.label}
-            className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5"
+            className="bg-neutral-900 rounded-xl border border-neutral-800 p-5"
           >
             <div
               className={`w-10 h-10 rounded-xl ${stat.color} flex items-center justify-center mb-3`}
             >
               <stat.icon className="w-5 h-5" />
             </div>
-            <div className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+            <div className="text-2xl font-bold text-white">
               {stat.value}
             </div>
-            <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <div className="text-xs text-neutral-500 mt-0.5">
               {stat.label}
             </div>
-            <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
+            <div className="text-xs text-neutral-500 mt-0.5">
               {stat.sub}
             </div>
           </div>
@@ -230,20 +230,20 @@ export default async function SellerDashboardPage() {
         {/* ── LEFT col (span-2) ─────────────────────────────────────────── */}
         <div className="lg:col-span-2 space-y-6">
           {/* Earnings Chart */}
-          <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+          <div className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6">
             <div className="flex items-center justify-between mb-1">
-              <h2 className="font-semibold text-slate-900 dark:text-slate-100">
+              <h2 className="font-semibold text-white">
                 Earnings — Last 6 Months
               </h2>
               <div className="text-right">
-                <span className="text-sm font-bold text-slate-900 dark:text-slate-100">
+                <span className="text-sm font-bold text-white">
                   {formatCurrency(thisMonthRevenue)}
                 </span>
                 <span
                   className={`ml-2 text-xs font-medium px-1.5 py-0.5 rounded ${
                     momChange >= 0
-                      ? "bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-300"
-                      : "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300"
+                      ? "bg-green-950 text-green-300"
+                      : "bg-red-950 text-red-300"
                   }`}
                 >
                   {momChange >= 0 ? "+" : ""}
@@ -251,24 +251,24 @@ export default async function SellerDashboardPage() {
                 </span>
               </div>
             </div>
-            <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">
+            <p className="text-xs text-neutral-500 mb-4">
               Monthly seller payout (after platform fee)
             </p>
-            <RevenueChart data={chartData} title="" color="#eab308" />
+            <RevenueChart data={chartData} title="" color="#f97316" />
           </div>
 
           {/* Offer Pipeline */}
-          <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
-            <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-4">
+          <div className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6">
+            <h2 className="font-semibold text-white mb-4">
               Offer Pipeline
             </h2>
             <div className="flex flex-wrap gap-3">
               {[
-                { label: "Pending", count: pendingCount, color: "bg-yellow-100 text-yellow-800 dark:bg-yellow-950 dark:text-yellow-300" },
-                { label: "Countered", count: counteredCount, color: "bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-300" },
-                { label: "Accepted", count: acceptedCount, color: "bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-300" },
-                { label: "Completed", count: completedCount, color: "bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300" },
-                { label: "Declined", count: declinedCount, color: "bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300" },
+                { label: "Pending", count: pendingCount, color: "bg-yellow-950 text-yellow-300" },
+                { label: "Countered", count: counteredCount, color: "bg-orange-950 text-orange-300" },
+                { label: "Accepted", count: acceptedCount, color: "bg-green-950 text-green-300" },
+                { label: "Completed", count: completedCount, color: "bg-blue-950 text-blue-300" },
+                { label: "Declined", count: declinedCount, color: "bg-red-950 text-red-300" },
               ].map((s) => (
                 <div
                   key={s.label}
@@ -282,28 +282,28 @@ export default async function SellerDashboardPage() {
           </div>
 
           {/* Recent Offers table */}
-          <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+          <div className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-semibold text-slate-900 dark:text-slate-100">
+              <h2 className="font-semibold text-white">
                 Recent Offers
               </h2>
-              <span className="text-xs text-slate-400 dark:text-slate-500">
+              <span className="text-xs text-neutral-500">
                 Showing latest {recentOffers.length}
               </span>
             </div>
 
             {recentOffers.length === 0 ? (
               <div className="py-10 text-center">
-                <Package className="w-10 h-10 text-slate-300 dark:text-slate-600 mx-auto mb-3" />
-                <h3 className="font-medium text-slate-600 dark:text-slate-400 mb-1">
+                <Package className="w-10 h-10 text-neutral-700 mx-auto mb-3" />
+                <h3 className="font-medium text-neutral-400 mb-1">
                   No offers yet
                 </h3>
-                <p className="text-sm text-slate-400 dark:text-slate-500 mb-4">
+                <p className="text-sm text-neutral-500 mb-4">
                   Browse active grail requests and make your first offer
                 </p>
                 <Link
                   href="/grails"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-400 text-slate-900 font-semibold text-sm hover:bg-yellow-300 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-500 text-white font-semibold text-sm hover:bg-orange-400 transition-colors"
                 >
                   Browse Grails
                 </Link>
@@ -313,56 +313,56 @@ export default async function SellerDashboardPage() {
                 {recentOffers.map((offer) => (
                   <div
                     key={offer.id}
-                    className="flex items-center gap-4 rounded-xl border border-slate-100 dark:border-slate-700 p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                    className="flex items-center gap-4 rounded-xl border border-neutral-800 p-3 hover:bg-neutral-800/50 transition-colors"
                   >
-                    <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300 flex-shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-neutral-800 flex items-center justify-center text-xs font-bold text-neutral-300 flex-shrink-0">
                       {offer.grailRequest.user.name?.[0]?.toUpperCase() ?? "?"}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="font-medium text-slate-900 dark:text-slate-100 truncate text-sm">
+                      <div className="font-medium text-white truncate text-sm">
                         {offer.grailRequest.title}
                       </div>
-                      <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                      <div className="text-xs text-neutral-500 mt-0.5">
                         {getCategoryLabel(offer.grailRequest.category)} ·{" "}
                         {formatTimeAgo(offer.createdAt)}
                       </div>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0">
                       {offer.counterPrice != null && (
-                        <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-300">
+                        <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-orange-950 text-orange-300">
                           Counter
                         </span>
                       )}
                       <span
                         className={`text-xs px-2 py-0.5 rounded-full font-medium ${
                           offer.status === "PENDING"
-                            ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-950 dark:text-yellow-300"
+                            ? "bg-yellow-950 text-yellow-300"
                             : offer.status === "COUNTERED"
-                            ? "bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-300"
+                            ? "bg-orange-950 text-orange-300"
                             : offer.status === "ACCEPTED"
-                            ? "bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-300"
+                            ? "bg-green-950 text-green-300"
                             : offer.status === "DECLINED"
-                            ? "bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300"
+                            ? "bg-red-950 text-red-300"
                             : offer.status === "WITHDRAWN"
-                            ? "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400"
-                            : "bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300"
+                            ? "bg-neutral-800 text-neutral-500"
+                            : "bg-blue-950 text-blue-300"
                         }`}
                       >
                         {offer.status.charAt(0) + offer.status.slice(1).toLowerCase()}
                       </span>
                       <div className="text-right">
-                        <div className="font-bold text-slate-900 dark:text-slate-100 text-sm">
+                        <div className="font-bold text-white text-sm">
                           {formatCurrency(offer.counterPrice ?? offer.price)}
                         </div>
                         {offer.counterPrice != null && (
-                          <div className="text-xs text-slate-400 dark:text-slate-500 line-through">
+                          <div className="text-xs text-neutral-500 line-through">
                             {formatCurrency(offer.price)}
                           </div>
                         )}
                       </div>
                       <Link
                         href={`/grails/${offer.grailRequestId}`}
-                        className="text-xs px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors font-medium whitespace-nowrap"
+                        className="text-xs px-2 py-1 rounded-lg bg-neutral-800 text-neutral-300 hover:bg-neutral-700 transition-colors font-medium whitespace-nowrap"
                       >
                         {offer.status === "PENDING" ? "Counter-offer" : "View"}
                       </Link>
@@ -377,8 +377,8 @@ export default async function SellerDashboardPage() {
         {/* ── RIGHT col ─────────────────────────────────────────────────── */}
         <div className="space-y-5">
           {/* Reputation card */}
-          <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5">
-            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-4 text-sm">
+          <div className="bg-neutral-900 rounded-2xl border border-neutral-800 p-5">
+            <h3 className="font-semibold text-white mb-4 text-sm">
               Reputation
             </h3>
             {/* Star visual */}
@@ -389,51 +389,51 @@ export default async function SellerDashboardPage() {
                   className="w-5 h-5"
                   fill={
                     avgRating !== null && star <= Math.round(avgRating)
-                      ? "#eab308"
+                      ? "#f97316"
                       : "transparent"
                   }
                   color={
                     avgRating !== null && star <= Math.round(avgRating)
-                      ? "#eab308"
-                      : "#cbd5e1"
+                      ? "#f97316"
+                      : "#525252"
                   }
                 />
               ))}
-              <span className="ml-2 text-lg font-bold text-slate-900 dark:text-slate-100">
+              <span className="ml-2 text-lg font-bold text-white">
                 {avgRatingDisplay ?? "—"}
               </span>
             </div>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">
+            <p className="text-xs text-neutral-500 mb-4">
               {ratings.length} review{ratings.length !== 1 ? "s" : ""}
             </p>
 
             <div className="space-y-2 text-sm">
               <div className="flex items-center justify-between">
-                <span className="text-slate-500 dark:text-slate-400">Sales completed</span>
-                <span className="font-semibold text-slate-900 dark:text-slate-100">
+                <span className="text-neutral-500">Sales completed</span>
+                <span className="font-semibold text-white">
                   {user?.successfulSales ?? 0}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-500 dark:text-slate-400">
+                <span className="text-neutral-500">
                   90-day acceptance rate
                 </span>
-                <span className="font-semibold text-slate-900 dark:text-slate-100">
+                <span className="font-semibold text-white">
                   {acceptanceRate !== null ? `${acceptanceRate}%` : "—"}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-500 dark:text-slate-400">Total offers</span>
-                <span className="font-semibold text-slate-900 dark:text-slate-100">
+                <span className="text-neutral-500">Total offers</span>
+                <span className="font-semibold text-white">
                   {user?._count.offers ?? 0}
                 </span>
               </div>
             </div>
 
             {session.user.verifiedSeller && (
-              <div className="flex items-center gap-2 mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
-                <ShieldCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">
+              <div className="flex items-center gap-2 mt-4 pt-4 border-t border-neutral-800">
+                <ShieldCheck className="w-4 h-4 text-blue-400" />
+                <span className="text-sm font-semibold text-blue-300">
                   Verified Seller
                 </span>
               </div>
@@ -442,24 +442,24 @@ export default async function SellerDashboardPage() {
 
           {/* Category Performance */}
           {categoryStats.length > 0 && (
-            <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5">
-              <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-4 text-sm">
+            <div className="bg-neutral-900 rounded-2xl border border-neutral-800 p-5">
+              <h3 className="font-semibold text-white mb-4 text-sm">
                 Category Performance
               </h3>
               <div className="space-y-3">
                 {categoryStats.map((cat) => (
                   <div key={cat.label}>
                     <div className="flex items-center justify-between text-xs mb-1">
-                      <span className="text-slate-600 dark:text-slate-300 font-medium truncate mr-2">
+                      <span className="text-neutral-300 font-medium truncate mr-2">
                         {cat.label}
                       </span>
-                      <span className="text-slate-400 dark:text-slate-500 whitespace-nowrap">
+                      <span className="text-neutral-500 whitespace-nowrap">
                         {cat.count} · avg {formatCurrency(cat.avgPrice)}
                       </span>
                     </div>
-                    <div className="h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-neutral-800 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-yellow-400 rounded-full"
+                        className="h-full bg-orange-500 rounded-full"
                         style={{
                           width: `${Math.round((cat.count / maxCatCount) * 100)}%`,
                         }}
@@ -472,8 +472,8 @@ export default async function SellerDashboardPage() {
           )}
 
           {/* Quick Links grid */}
-          <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5">
-            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-3 text-sm">
+          <div className="bg-neutral-900 rounded-2xl border border-neutral-800 p-5">
+            <h3 className="font-semibold text-white mb-3 text-sm">
               Quick Links
             </h3>
             <div className="grid grid-cols-2 gap-2">
@@ -488,22 +488,22 @@ export default async function SellerDashboardPage() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="flex items-center gap-2 p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors text-xs font-medium text-slate-700 dark:text-slate-300"
+                  className="flex items-center gap-2 p-2.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 transition-colors text-xs font-medium text-neutral-300"
                 >
-                  <link.icon className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 flex-shrink-0" />
+                  <link.icon className="w-3.5 h-3.5 text-neutral-500 flex-shrink-0" />
                   <span className="truncate">{link.label}</span>
-                  <ArrowRight className="w-3 h-3 text-slate-400 dark:text-slate-500 ml-auto flex-shrink-0" />
+                  <ArrowRight className="w-3 h-3 text-neutral-500 ml-auto flex-shrink-0" />
                 </Link>
               ))}
             </div>
           </div>
 
           {/* Fee info */}
-          <div className="bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-xl p-4">
+          <div className="bg-neutral-800 border border-neutral-700 rounded-xl p-4">
             <div className="flex items-start gap-2">
-              <AlertCircle className="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0 mt-0.5" />
-              <div className="text-xs text-slate-600 dark:text-slate-400">
-                <strong className="text-slate-800 dark:text-slate-200">Platform fee: 9%</strong>
+              <AlertCircle className="w-4 h-4 text-neutral-500 flex-shrink-0 mt-0.5" />
+              <div className="text-xs text-neutral-400">
+                <strong className="text-neutral-200">Platform fee: 9%</strong>
                 <br />
                 You keep 91% of every sale. Payments release after buyer confirms receipt.
               </div>

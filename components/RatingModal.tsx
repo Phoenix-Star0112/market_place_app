@@ -61,25 +61,25 @@ export function RatingModal({ offer, role, recipientId, recipientName, onClose, 
       onClick={onClose}
     >
       <div
-        className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-2xl w-full max-w-md p-6"
+        className="bg-neutral-900 rounded-2xl border border-neutral-800 shadow-2xl w-full max-w-md p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">Leave a Review</h2>
-          <button onClick={onClose} className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+          <h2 className="text-lg font-bold text-white">Leave a Review</h2>
+          <button onClick={onClose} className="p-1.5 rounded-lg text-neutral-500 hover:text-neutral-300 transition-colors">
             <X className="w-4 h-4" />
           </button>
         </div>
 
-        <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-4 mb-5">
-          <p className="text-xs text-slate-500 dark:text-slate-400 mb-0.5">
+        <div className="bg-neutral-800 rounded-xl p-4 mb-5">
+          <p className="text-xs text-neutral-500 mb-0.5">
             {role === "buyer" ? "You purchased from" : "You sold to"} · ${offer.price.toFixed(0)}
           </p>
-          <p className="text-sm font-medium text-slate-900 dark:text-slate-100 line-clamp-1 mb-1">
+          <p className="text-sm font-medium text-white line-clamp-1 mb-1">
             {offer.grailRequestTitle}
           </p>
-          <p className="text-sm text-slate-600 dark:text-slate-400">
-            Rating <span className="font-semibold text-slate-900 dark:text-slate-100">{recipientName}</span>
+          <p className="text-sm text-neutral-400">
+            Rating <span className="font-semibold text-white">{recipientName}</span>
           </p>
         </div>
 
@@ -93,44 +93,44 @@ export function RatingModal({ offer, role, recipientId, recipientName, onClose, 
                 onMouseLeave={() => setHovered(0)}
                 onClick={() => setSelected(n)}
                 className={`text-4xl transition-transform hover:scale-110 ${
-                  n <= display ? "text-yellow-400" : "text-slate-200 dark:text-slate-700"
+                  n <= display ? "text-orange-400" : "text-neutral-700"
                 }`}
               >
                 ★
               </button>
             ))}
           </div>
-          <p className={`text-sm font-semibold h-5 transition-all ${display ? "text-slate-700 dark:text-slate-300 opacity-100" : "opacity-0"}`}>
+          <p className={`text-sm font-semibold h-5 transition-all ${display ? "text-neutral-300 opacity-100" : "opacity-0"}`}>
             {STAR_LABELS[display]}
           </p>
         </div>
 
         {/* Comment */}
         <div className="mb-5">
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
-            Comment <span className="text-slate-400 font-normal">(optional)</span>
+          <label className="block text-sm font-medium text-neutral-300 mb-1.5">
+            Comment <span className="text-neutral-500 font-normal">(optional)</span>
           </label>
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value.slice(0, 500))}
             rows={3}
             placeholder="Share your experience with this collector..."
-            className="input-field resize-none dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100"
+            className="input-field resize-none"
           />
-          <p className="text-xs text-slate-400 mt-1 text-right">{comment.length}/500</p>
+          <p className="text-xs text-neutral-500 mt-1 text-right">{comment.length}/500</p>
         </div>
 
         <div className="flex gap-3">
           <button
             onClick={onClose}
-            className="flex-1 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+            className="flex-1 px-4 py-2.5 rounded-lg border border-neutral-700 text-neutral-300 font-medium text-sm hover:bg-neutral-800 transition-colors"
           >
             Skip for Now
           </button>
           <button
             onClick={handleSubmit}
             disabled={!selected || loading}
-            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-yellow-400 text-slate-900 font-semibold text-sm hover:bg-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-orange-500 text-white font-semibold text-sm hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {loading && <Loader2 className="w-4 h-4 animate-spin" />}
             Submit Review

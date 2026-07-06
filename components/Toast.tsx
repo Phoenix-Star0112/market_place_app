@@ -31,10 +31,10 @@ const ICONS = {
 }
 
 const STYLES = {
-  success: "border-green-200 bg-white text-green-800 [&_.icon]:text-green-500 [&_.bar]:bg-green-400",
-  error:   "border-red-200   bg-white text-red-800   [&_.icon]:text-red-500   [&_.bar]:bg-red-400",
-  warning: "border-amber-200 bg-white text-amber-800 [&_.icon]:text-amber-500 [&_.bar]:bg-amber-400",
-  info:    "border-blue-200  bg-white text-blue-800  [&_.icon]:text-blue-500  [&_.bar]:bg-blue-400",
+  success: "border-green-200 bg-neutral-900 text-green-800 [&_.icon]:text-green-500 [&_.bar]:bg-green-400",
+  error:   "border-red-200   bg-neutral-900 text-red-800   [&_.icon]:text-red-500   [&_.bar]:bg-red-400",
+  warning: "border-amber-200 bg-neutral-900 text-amber-800 [&_.icon]:text-amber-500 [&_.bar]:bg-amber-400",
+  info:    "border-blue-200  bg-neutral-900 text-blue-800  [&_.icon]:text-blue-500  [&_.bar]:bg-blue-400",
 }
 
 function ToastItem({ toast, onRemove }: { toast: Toast; onRemove: (id: string) => void }) {

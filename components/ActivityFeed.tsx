@@ -16,7 +16,7 @@ interface Activity {
 }
 
 const ICONS = {
-  new_grail:      { icon: Trophy,       color: "bg-yellow-100 text-yellow-700" },
+  new_grail:      { icon: Trophy,       color: "bg-orange-500/15 text-orange-400" },
   new_offer:      { icon: Package,      color: "bg-blue-100 text-blue-700" },
   offer_accepted: { icon: CheckCircle,  color: "bg-green-100 text-green-700" },
   completed:      { icon: CheckCircle,  color: "bg-purple-100 text-purple-700" },
@@ -39,10 +39,10 @@ export function ActivityFeed({ limit = 8 }: { limit?: number }) {
       <div className="space-y-3">
         {Array.from({ length: 4 }).map((_, i) => (
           <div key={i} className="flex items-center gap-3 animate-pulse">
-            <div className="w-8 h-8 rounded-full bg-slate-100 flex-shrink-0" />
+            <div className="w-8 h-8 rounded-full bg-neutral-800 flex-shrink-0" />
             <div className="flex-1">
-              <div className="h-3 bg-slate-100 rounded w-3/4 mb-1.5" />
-              <div className="h-2.5 bg-slate-100 rounded w-1/2" />
+              <div className="h-3 bg-neutral-800 rounded w-3/4 mb-1.5" />
+              <div className="h-2.5 bg-neutral-800 rounded w-1/2" />
             </div>
           </div>
         ))}
@@ -51,7 +51,7 @@ export function ActivityFeed({ limit = 8 }: { limit?: number }) {
   }
 
   if (!activities.length) return (
-    <div className="text-center py-6 text-sm text-slate-400">
+    <div className="text-center py-6 text-sm text-neutral-500">
       <Clock className="w-6 h-6 mx-auto mb-2 opacity-40" />
       No recent activity yet
     </div>
@@ -68,17 +68,17 @@ export function ActivityFeed({ limit = 8 }: { limit?: number }) {
             </div>
             <div className="flex-1 min-w-0">
               {a.link ? (
-                <Link href={a.link} className="text-sm font-medium text-slate-900 hover:text-yellow-600 line-clamp-1">
+                <Link href={a.link} className="text-sm font-medium text-white hover:text-orange-400 line-clamp-1">
                   {a.title}
                 </Link>
               ) : (
-                <p className="text-sm font-medium text-slate-900 line-clamp-1">{a.title}</p>
+                <p className="text-sm font-medium text-white line-clamp-1">{a.title}</p>
               )}
-              <p className="text-xs text-slate-500 mt-0.5">{a.subtitle}</p>
+              <p className="text-xs text-neutral-500 mt-0.5">{a.subtitle}</p>
             </div>
             <div className="flex-shrink-0 text-right">
-              {a.meta && <div className="text-xs font-semibold text-yellow-600">{a.meta}</div>}
-              <div className="text-[11px] text-slate-400">{formatTimeAgo(a.time)}</div>
+              {a.meta && <div className="text-xs font-semibold text-orange-400">{a.meta}</div>}
+              <div className="text-[11px] text-neutral-500">{formatTimeAgo(a.time)}</div>
             </div>
           </div>
         )

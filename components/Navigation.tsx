@@ -5,9 +5,8 @@ import { useSession, signOut } from "next-auth/react"
 import { useState, useEffect, useRef } from "react"
 import {
   Trophy, Bell, ChevronDown, Menu, X, User, LayoutDashboard,
-  LogOut, Settings, Package, Star, ShieldCheck,
+  LogOut, Package,
 } from "lucide-react"
-import { DarkModeToggle } from "@/components/DarkModeToggle"
 
 interface Notification {
   id: string
@@ -88,42 +87,39 @@ export function Navigation() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+    <nav className="fixed top-0 inset-x-0 z-50 bg-black/60 backdrop-blur-md border-b border-white/10">
       <div className="page-container">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-bold text-xl text-slate-900 dark:text-slate-100 hover:opacity-80">
-            <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
-              <Trophy className="w-5 h-5 text-yellow-900" />
+          <Link href="/" className="flex items-center gap-2 font-bold text-xl hover:opacity-80 text-white">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-orange-500">
+              <Trophy className="w-5 h-5 text-white" />
             </div>
             <span>GrailMarket</span>
           </Link>
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-1">
-            <Link href="/grails" className="px-3 py-2 rounded-md text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <Link href="/grails" className="px-3 py-2 rounded-md text-sm font-medium text-neutral-300 hover:text-white hover:bg-white/10">
               Browse
             </Link>
-            <Link href="/trending" className="px-3 py-2 rounded-md text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-1">
+            <Link href="/trending" className="px-3 py-2 rounded-md text-sm font-medium text-neutral-300 hover:text-white hover:bg-white/10 flex items-center gap-1">
               🔥 Trending
             </Link>
-            <Link href="/how-it-works" className="px-3 py-2 rounded-md text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <Link href="/how-it-works" className="px-3 py-2 rounded-md text-sm font-medium text-neutral-300 hover:text-white hover:bg-white/10">
               How It Works
             </Link>
           </div>
 
           {/* Desktop right */}
           <div className="hidden md:flex items-center gap-3">
-            {/* Dark mode toggle — always visible */}
-            <DarkModeToggle />
-
             {session ? (
               <>
                 {/* Notifications */}
                 <div className="relative" ref={notifRef}>
                   <button
                     onClick={handleOpenNotif}
-                    className={`relative p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 ${newNotifArrived ? "bell-pulse" : ""}`}
+                    className={`relative p-2 rounded-lg text-neutral-300 hover:text-white hover:bg-white/10 ${newNotifArrived ? "bell-pulse" : ""}`}
                     aria-label="Notifications"
                   >
                     <Bell className="w-5 h-5" />
@@ -134,18 +130,18 @@ export function Navigation() {
                     )}
                   </button>
                   {notifOpen && (
-                    <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden">
-                      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 dark:border-slate-700">
-                        <span className="font-semibold text-sm text-slate-900 dark:text-slate-100">Notifications</span>
+                    <div className="absolute right-0 mt-2 w-80 bg-neutral-900 rounded-xl shadow-lg border border-neutral-800 overflow-hidden">
+                      <div className="flex items-center justify-between px-4 py-3 border-b border-neutral-800">
+                        <span className="font-semibold text-sm text-white">Notifications</span>
                         {unreadCount > 0 && (
-                          <button onClick={handleMarkAllRead} className="text-xs text-yellow-600 hover:text-yellow-700 font-medium">
+                          <button onClick={handleMarkAllRead} className="text-xs text-orange-400 hover:text-orange-300 font-medium">
                             Mark all read
                           </button>
                         )}
                       </div>
                       <div className="max-h-72 overflow-y-auto">
                         {notifications.length === 0 ? (
-                          <div className="px-4 py-6 text-center text-sm text-slate-500 dark:text-slate-400">
+                          <div className="px-4 py-6 text-center text-sm text-neutral-400">
                             No notifications yet
                           </div>
                         ) : (
@@ -154,10 +150,10 @@ export function Navigation() {
                               key={n.id}
                               href={n.link || "#"}
                               onClick={() => setNotifOpen(false)}
-                              className={`flex flex-col px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700 border-b border-slate-50 dark:border-slate-700 last:border-0 ${!n.read ? "bg-yellow-50 dark:bg-yellow-900/20" : ""}`}
+                              className={`flex flex-col px-4 py-3 hover:bg-neutral-800 border-b border-neutral-800 last:border-0 ${!n.read ? "bg-orange-500/10" : ""}`}
                             >
-                              <span className="text-sm font-medium text-slate-900 dark:text-slate-100">{n.title}</span>
-                              <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{n.message}</span>
+                              <span className="text-sm font-medium text-white">{n.title}</span>
+                              <span className="text-xs text-neutral-400 mt-0.5">{n.message}</span>
                             </Link>
                           ))
                         )}
@@ -171,12 +167,12 @@ export function Navigation() {
                   {/* Avatar — click opens dropdown, but direct link to profile on avatar itself */}
                   <button
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
-                    className="flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    className="flex items-center gap-2 px-2 py-1.5 rounded-xl transition-colors hover:bg-white/10"
                   >
                     <Link
                       href="/profile/me"
                       onClick={(e) => e.stopPropagation()}
-                      className="w-8 h-8 rounded-full overflow-hidden bg-yellow-400 flex items-center justify-center text-sm font-bold text-yellow-900 flex-shrink-0 hover:ring-2 hover:ring-yellow-400 hover:ring-offset-1 transition-all"
+                      className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center text-sm font-bold flex-shrink-0 transition-all bg-orange-500 text-white hover:ring-2 hover:ring-orange-500 hover:ring-offset-1 hover:ring-offset-black"
                     >
                       {session.user.image ? (
                         <img src={session.user.image} alt={session.user.name || ""} className="w-full h-full object-cover" />
@@ -184,43 +180,43 @@ export function Navigation() {
                         session.user.name?.[0]?.toUpperCase() || "U"
                       )}
                     </Link>
-                    <span className="text-sm font-medium text-slate-700 dark:text-slate-200 max-w-24 truncate hidden sm:block">
+                    <span className="text-sm font-medium max-w-24 truncate hidden sm:block text-white">
                       {session.user.name}
                     </span>
-                    <ChevronDown className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
+                    <ChevronDown className="w-3.5 h-3.5 text-neutral-400" />
                   </button>
                   {userMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden py-1 z-50">
-                      <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-700 mb-1">
-                        <p className="text-xs text-slate-500 dark:text-slate-400">Signed in as</p>
-                        <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 truncate">{session.user.email}</p>
+                    <div className="absolute right-0 mt-2 w-56 bg-neutral-900 rounded-xl shadow-xl border border-neutral-800 overflow-hidden py-1 z-50">
+                      <div className="px-4 py-3 border-b border-neutral-800 mb-1">
+                        <p className="text-xs text-neutral-400">Signed in as</p>
+                        <p className="text-sm font-semibold text-white truncate">{session.user.email}</p>
                         {(session.user.verified || session.user.verifiedSeller) && (
-                          <span className="inline-flex items-center gap-1 text-[10px] text-blue-600 dark:text-blue-400 mt-0.5">
+                          <span className="inline-flex items-center gap-1 text-[10px] text-blue-400 mt-0.5">
                             ✓ {session.user.verifiedSeller ? "Verified Seller" : "Verified"}
                           </span>
                         )}
                       </div>
-                      <Link href="/dashboard" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700">
-                        <LayoutDashboard className="w-4 h-4 text-slate-400" /> Dashboard
+                      <Link href="/dashboard" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-4 py-2 text-sm text-neutral-200 hover:bg-neutral-800">
+                        <LayoutDashboard className="w-4 h-4 text-neutral-400" /> Dashboard
                       </Link>
-                      <Link href="/profile/me" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700">
-                        <User className="w-4 h-4 text-slate-400" /> My Profile
+                      <Link href="/profile/me" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2.5 px-4 py-2 text-sm text-neutral-200 hover:bg-neutral-800">
+                        <User className="w-4 h-4 text-neutral-400" /> My Profile
                       </Link>
-                      <Link href="/buyer/saved" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700">
+                      <Link href="/buyer/saved" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-200 hover:bg-neutral-800">
                         <Package className="w-4 h-4" /> Saved Watchlist
                       </Link>
-                      <Link href="/transactions" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700">
+                      <Link href="/transactions" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-200 hover:bg-neutral-800">
                         <Package className="w-4 h-4" /> Transactions
                       </Link>
                       {(session.user.role === "SELLER" || session.user.verifiedSeller) && (
-                        <Link href="/seller/dashboard" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700">
+                        <Link href="/seller/dashboard" onClick={() => setUserMenuOpen(false)} className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-200 hover:bg-neutral-800">
                           <Package className="w-4 h-4" /> Seller Dashboard
                         </Link>
                       )}
-                      <div className="border-t border-slate-100 dark:border-slate-700 mt-1 pt-1">
+                      <div className="border-t border-neutral-800 mt-1 pt-1">
                         <button
                           onClick={() => signOut({ callbackUrl: "/" })}
-                          className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20"
+                          className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-400 hover:bg-red-900/20"
                         >
                           <LogOut className="w-4 h-4" /> Sign Out
                         </button>
@@ -231,15 +227,15 @@ export function Navigation() {
               </>
             ) : (
               <>
-                <Link href="/login" className="btn-secondary">Sign In</Link>
-                <Link href="/register" className="btn-primary">Get Started</Link>
+                <Link href="/login" className="px-4 py-2 rounded-lg text-sm font-semibold text-white hover:bg-white/10 transition-colors">Sign In</Link>
+                <Link href="/register" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold bg-orange-500 text-white hover:bg-orange-400 transition-colors">Get Started</Link>
               </>
             )}
           </div>
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+            className="md:hidden p-2 rounded-lg text-neutral-300 hover:bg-white/10"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -249,24 +245,20 @@ export function Navigation() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+        <div className="md:hidden border-t border-white/10 bg-black/90 backdrop-blur-md">
           <div className="page-container py-3 flex flex-col gap-1">
-            <Link href="/grails" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">Browse Grails</Link>
-            <Link href="/how-it-works" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">How It Works</Link>
+            <Link href="/grails" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md text-sm font-medium text-neutral-200 hover:bg-white/10">Browse Grails</Link>
+            <Link href="/how-it-works" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md text-sm font-medium text-neutral-200 hover:bg-white/10">How It Works</Link>
             {session ? (
               <>
-                <Link href="/dashboard" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">Dashboard</Link>
-                <Link href={`/profile/${session.user.id}`} onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">My Profile</Link>
-                <div className="flex items-center gap-2 px-3 py-2">
-                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200">Dark Mode</span>
-                  <DarkModeToggle />
-                </div>
-                <button onClick={() => signOut({ callbackUrl: "/" })} className="text-left px-3 py-2 rounded-md text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20">Sign Out</button>
+                <Link href="/dashboard" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md text-sm font-medium text-neutral-200 hover:bg-white/10">Dashboard</Link>
+                <Link href={`/profile/${session.user.id}`} onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md text-sm font-medium text-neutral-200 hover:bg-white/10">My Profile</Link>
+                <button onClick={() => signOut({ callbackUrl: "/" })} className="text-left px-3 py-2 rounded-md text-sm font-medium text-red-400 hover:bg-white/10">Sign Out</button>
               </>
             ) : (
               <div className="flex gap-2 pt-2">
-                <Link href="/login" onClick={() => setMobileOpen(false)} className="btn-secondary flex-1 text-center">Sign In</Link>
-                <Link href="/register" onClick={() => setMobileOpen(false)} className="btn-primary flex-1 text-center">Get Started</Link>
+                <Link href="/login" onClick={() => setMobileOpen(false)} className="flex-1 text-center px-4 py-2 rounded-lg text-sm font-semibold text-white border border-white/20">Sign In</Link>
+                <Link href="/register" onClick={() => setMobileOpen(false)} className="flex-1 text-center px-4 py-2 rounded-lg text-sm font-bold bg-orange-500 text-white">Get Started</Link>
               </div>
             )}
           </div>

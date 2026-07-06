@@ -3,23 +3,23 @@ import { Trophy, ExternalLink } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-300">
+    <footer className="bg-neutral-950 text-neutral-400 border-t border-neutral-800">
       <div className="page-container py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg">
-              <div className="w-7 h-7 bg-yellow-400 rounded-lg flex items-center justify-center">
-                <Trophy className="w-4 h-4 text-yellow-900" />
+              <div className="w-7 h-7 bg-orange-500 rounded-lg flex items-center justify-center">
+                <Trophy className="w-4 h-4 text-white" />
               </div>
               GrailMarket
             </Link>
-            <p className="mt-3 text-sm text-slate-400 leading-relaxed">
+            <p className="mt-3 text-sm text-neutral-500 leading-relaxed">
               Don&apos;t Search. Be Found.<br />
               The premier marketplace for serious collectors.
             </p>
             <div className="flex gap-3 mt-4">
-              <a href="#" className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white">
+              <a href="#" className="p-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-neutral-400 hover:text-white">
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
@@ -61,13 +61,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-slate-500">
+        <div className="mt-10 pt-6 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-neutral-500">
             © {new Date().getFullYear()} GrailMarket, Inc. All rights reserved.
           </p>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-neutral-500">
             Payments secured by{" "}
-            <span className="text-slate-400 font-medium">Stripe Connect</span>
+            <span className="text-neutral-400 font-medium">Stripe Connect</span>
           </p>
         </div>
       </div>

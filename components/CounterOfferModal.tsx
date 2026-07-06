@@ -69,15 +69,15 @@ export function CounterOfferModal({ offer, grailBudget, onClose, onSubmit }: Cou
       onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
     >
       <div
-        className="relative w-full max-w-md rounded-2xl bg-white shadow-2xl"
+        className="relative w-full max-w-md rounded-2xl bg-neutral-900 shadow-2xl"
         style={{ maxHeight: "90vh", overflowY: "auto" }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
-          <h2 className="text-lg font-semibold text-slate-900">Make a Counter-Offer</h2>
+        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-800">
+          <h2 className="text-lg font-semibold text-white">Make a Counter-Offer</h2>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
+            className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-800 hover:text-neutral-300 transition-colors"
             aria-label="Close"
           >
             <X className="w-5 h-5" />
@@ -86,37 +86,37 @@ export function CounterOfferModal({ offer, grailBudget, onClose, onSubmit }: Cou
 
         <form onSubmit={handleSubmit} className="px-6 py-5 flex flex-col gap-5">
           {/* Offer context */}
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 flex flex-col gap-3">
+          <div className="rounded-xl border border-neutral-800 bg-neutral-800 p-4 flex flex-col gap-3">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-slate-500">Buyer&apos;s offer</span>
-              <span className="font-semibold text-slate-900">${offer.price.toFixed(2)}</span>
+              <span className="text-neutral-500">Buyer&apos;s offer</span>
+              <span className="font-semibold text-white">${offer.price.toFixed(2)}</span>
             </div>
             <div className="flex items-center justify-between text-sm">
-              <span className="text-slate-500 flex items-center gap-1">
+              <span className="text-neutral-500 flex items-center gap-1">
                 <TrendingUp className="w-3.5 h-3.5" />
                 Buyer&apos;s budget range
               </span>
-              <span className="font-medium text-slate-700">
+              <span className="font-medium text-neutral-300">
                 ${grailBudget.min.toFixed(0)} – ${grailBudget.max.toFixed(0)}
               </span>
             </div>
             <div className="flex items-center justify-between text-sm">
-              <span className="text-slate-500">Budget midpoint</span>
-              <span className="font-medium text-yellow-700">${budgetMidpoint.toFixed(2)}</span>
+              <span className="text-neutral-500">Budget midpoint</span>
+              <span className="font-medium text-orange-400">${budgetMidpoint.toFixed(2)}</span>
             </div>
             <div className="flex items-center justify-between text-sm">
-              <span className="text-slate-500">Condition</span>
-              <span className="font-medium text-slate-700">{offer.condition}</span>
+              <span className="text-neutral-500">Condition</span>
+              <span className="font-medium text-neutral-300">{offer.condition}</span>
             </div>
           </div>
 
           {/* Counter price input */}
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="counter-price" className="text-sm font-medium text-slate-700">
+            <label htmlFor="counter-price" className="text-sm font-medium text-neutral-300">
               Your Counter Price
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500">
                 <DollarSign className="w-4 h-4" />
               </span>
               <input
@@ -151,8 +151,8 @@ export function CounterOfferModal({ offer, grailBudget, onClose, onSubmit }: Cou
 
           {/* Note / explanation */}
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="counter-note" className="text-sm font-medium text-slate-700 flex items-center gap-1">
-              <MessageSquare className="w-4 h-4 text-slate-400" />
+            <label htmlFor="counter-note" className="text-sm font-medium text-neutral-300 flex items-center gap-1">
+              <MessageSquare className="w-4 h-4 text-neutral-500" />
               Explanation
             </label>
             <textarea
@@ -165,7 +165,7 @@ export function CounterOfferModal({ offer, grailBudget, onClose, onSubmit }: Cou
               required
               maxLength={500}
             />
-            <p className="text-xs text-slate-400 text-right">{note.length}/500</p>
+            <p className="text-xs text-neutral-500 text-right">{note.length}/500</p>
           </div>
 
           {/* Actions */}

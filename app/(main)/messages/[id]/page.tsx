@@ -88,26 +88,26 @@ export default function ConversationPage() {
     setSending(false)
   }
 
-  if (status === "loading") return <div className="py-16 flex justify-center"><Loader2 className="w-8 h-8 animate-spin text-yellow-500" /></div>
+  if (status === "loading") return <div className="py-16 flex justify-center"><Loader2 className="w-8 h-8 animate-spin text-orange-500" /></div>
   if (!session) return null
 
   return (
     <div className="py-6 page-container max-w-3xl">
-      <Link href="/messages" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 mb-4">
+      <Link href="/messages" className="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-white mb-4">
         <ArrowLeft className="w-4 h-4" /> Back to Messages
       </Link>
 
       {conv && (
-        <div className="bg-white rounded-xl border border-slate-200 p-4 mb-4 flex items-center gap-3">
+        <div className="bg-neutral-900 rounded-xl border border-neutral-800 p-4 mb-4 flex items-center gap-3">
           <div>
-            <p className="text-sm font-semibold text-slate-900">
+            <p className="text-sm font-semibold text-white">
               {conv.offer.grailRequest.title}
             </p>
-            <p className="text-xs text-slate-500 mt-0.5">
+            <p className="text-xs text-neutral-500 mt-0.5">
               Offer: {formatCurrency(conv.offer.price)} ·{" "}
               <span className={`font-medium ${
                 conv.offer.status === "ACCEPTED" ? "text-green-700" :
-                conv.offer.status === "PENDING" ? "text-yellow-700" : "text-slate-600"
+                conv.offer.status === "PENDING" ? "text-orange-400" : "text-neutral-400"
               }`}>
                 {conv.offer.status.charAt(0) + conv.offer.status.slice(1).toLowerCase()}
               </span>
@@ -115,7 +115,7 @@ export default function ConversationPage() {
           </div>
           <Link
             href={`/grails/${conv.offer.grailRequest.id}`}
-            className="ml-auto text-xs font-medium text-yellow-600 hover:text-yellow-700"
+            className="ml-auto text-xs font-medium text-orange-500 hover:text-orange-400"
           >
             View Grail →
           </Link>
@@ -132,19 +132,19 @@ export default function ConversationPage() {
       </div>
 
       {warning && (
-        <div className="bg-yellow-50 border border-yellow-300 rounded-xl p-3 mb-4 flex items-start gap-2">
-          <AlertTriangle className="w-4 h-4 text-yellow-600 flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-yellow-800">{warning}</p>
+        <div className="bg-orange-500/10 border border-orange-500/20 rounded-xl p-3 mb-4 flex items-start gap-2">
+          <AlertTriangle className="w-4 h-4 text-orange-500 flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-orange-300">{warning}</p>
         </div>
       )}
 
       {/* Messages */}
-      <div className="bg-white rounded-xl border border-slate-200 mb-4 overflow-hidden">
+      <div className="bg-neutral-900 rounded-xl border border-neutral-800 mb-4 overflow-hidden">
         <div className="h-[50vh] overflow-y-auto p-4 space-y-3">
           {loading ? (
-            <div className="flex justify-center py-8"><Loader2 className="w-6 h-6 animate-spin text-yellow-500" /></div>
+            <div className="flex justify-center py-8"><Loader2 className="w-6 h-6 animate-spin text-orange-500" /></div>
           ) : messages.length === 0 ? (
-            <div className="text-center py-8 text-sm text-slate-400">
+            <div className="text-center py-8 text-sm text-neutral-500">
               No messages yet. Start the conversation!
             </div>
           ) : (
@@ -154,8 +154,8 @@ export default function ConversationPage() {
                 <div key={msg.id} className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
                   <div className={`max-w-[75%] rounded-2xl px-4 py-2.5 text-sm ${
                     isMe
-                      ? "bg-yellow-400 text-yellow-900 rounded-br-md"
-                      : "bg-slate-100 text-slate-800 rounded-bl-md"
+                      ? "bg-orange-500 text-white rounded-br-md"
+                      : "bg-neutral-800 text-neutral-100 rounded-bl-md"
                   }`}>
                     {!isMe && (
                       <p className="text-xs font-semibold mb-1 opacity-70">{msg.sender.name}</p>
@@ -173,18 +173,18 @@ export default function ConversationPage() {
         </div>
 
         {/* Input */}
-        <form onSubmit={sendMessage} className="flex gap-2 p-3 border-t border-slate-100">
+        <form onSubmit={sendMessage} className="flex gap-2 p-3 border-t border-neutral-800">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type a message..."
-            className="flex-1 rounded-full border border-slate-200 px-4 py-2 text-sm focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
+            className="flex-1 rounded-full border border-neutral-800 px-4 py-2 text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
           />
           <button
             type="submit"
             disabled={sending || !input.trim()}
-            className="w-9 h-9 rounded-full bg-yellow-400 text-yellow-900 flex items-center justify-center hover:bg-yellow-300 disabled:opacity-40 transition-colors flex-shrink-0"
+            className="w-9 h-9 rounded-full bg-orange-500 text-white flex items-center justify-center hover:bg-orange-400 disabled:opacity-40 transition-colors flex-shrink-0"
           >
             {sending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
           </button>

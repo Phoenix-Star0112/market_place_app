@@ -48,19 +48,19 @@ export default async function TrendingPage() {
     <div className="py-8 page-container">
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center">
-          <Flame className="w-6 h-6 text-orange-600" />
+        <div className="w-12 h-12 rounded-2xl bg-orange-500/15 flex items-center justify-center">
+          <Flame className="w-6 h-6 text-orange-400" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Trending This Week</h1>
-          <p className="text-slate-500 text-sm">Most active grail requests ranked by GrailScore™</p>
+          <h1 className="text-2xl font-bold text-white">Trending This Week</h1>
+          <p className="text-neutral-500 text-sm">Most active grail requests ranked by GrailScore™</p>
         </div>
       </div>
 
       {/* Category heat map */}
-      <div className="bg-white rounded-xl border border-slate-200 p-5 mb-8">
-        <h2 className="font-semibold text-slate-900 mb-4 flex items-center gap-2 text-sm">
-          <TrendingUp className="w-4 h-4 text-yellow-500" /> Category Trends (30 days)
+      <div className="bg-neutral-900 rounded-xl border border-neutral-800 p-5 mb-8">
+        <h2 className="font-semibold text-white mb-4 flex items-center gap-2 text-sm">
+          <TrendingUp className="w-4 h-4 text-orange-500" /> Category Trends (30 days)
         </h2>
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
           {CATEGORY_STATS.map((c) => {
@@ -69,10 +69,10 @@ export default async function TrendingPage() {
               <Link
                 key={c.category}
                 href={`/grails?category=${c.category}`}
-                className="flex flex-col items-center p-3 rounded-xl bg-slate-50 hover:bg-yellow-50 hover:border-yellow-200 border border-transparent transition-all text-center"
+                className="flex flex-col items-center p-3 rounded-xl bg-neutral-800 hover:bg-orange-500/10 hover:border-orange-500/20 border border-transparent transition-all text-center"
               >
                 <span className="text-2xl mb-1">{c.emoji}</span>
-                <span className="text-xs font-medium text-slate-700">{c.label}</span>
+                <span className="text-xs font-medium text-neutral-300">{c.label}</span>
                 <span className={`text-xs font-bold mt-1 ${isUp ? "text-green-600" : "text-red-500"}`}>{c.trend}</span>
               </Link>
             )
@@ -83,8 +83,8 @@ export default async function TrendingPage() {
       {/* Trending list */}
       {trending.length === 0 ? (
         <div className="text-center py-16">
-          <Trophy className="w-10 h-10 text-slate-300 mx-auto mb-3" />
-          <p className="text-slate-500">No trending grails yet — check back soon!</p>
+          <Trophy className="w-10 h-10 text-neutral-700 mx-auto mb-3" />
+          <p className="text-neutral-500">No trending grails yet — check back soon!</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -94,31 +94,31 @@ export default async function TrendingPage() {
               <Link
                 key={grail.id}
                 href={`/grails/${grail.id}`}
-                className="flex items-center gap-4 bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md hover:border-yellow-200 transition-all group"
+                className="flex items-center gap-4 bg-neutral-900 rounded-xl border border-neutral-800 p-4 hover:shadow-md hover:border-orange-500/20 transition-all group"
               >
                 {/* Rank */}
                 <div className={`w-8 text-center font-bold flex-shrink-0 ${
-                  i === 0 ? "text-yellow-500 text-xl" : i < 3 ? "text-slate-500 text-lg" : "text-slate-400"
+                  i === 0 ? "text-orange-500 text-xl" : i < 3 ? "text-neutral-500 text-lg" : "text-neutral-500"
                 }`}>
                   {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `${i + 1}`}
                 </div>
 
                 {/* Image */}
-                <div className="w-14 h-14 rounded-lg overflow-hidden bg-slate-100 flex-shrink-0">
+                <div className="w-14 h-14 rounded-lg overflow-hidden bg-neutral-800 flex-shrink-0">
                   {images[0]
                     ? <img src={images[0]} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
-                    : <div className="flex items-center justify-center h-full"><Trophy className="w-5 h-5 text-slate-300" /></div>}
+                    : <div className="flex items-center justify-center h-full"><Trophy className="w-5 h-5 text-neutral-700" /></div>}
                 </div>
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-slate-900 truncate text-sm">{grail.title}</h3>
-                  <div className="flex items-center gap-3 mt-1 text-xs text-slate-500">
-                    <span className="px-2 py-0.5 rounded-full bg-slate-100">{getCategoryLabel(grail.category)}</span>
+                  <h3 className="font-semibold text-white truncate text-sm">{grail.title}</h3>
+                  <div className="flex items-center gap-3 mt-1 text-xs text-neutral-500">
+                    <span className="px-2 py-0.5 rounded-full bg-neutral-800">{getCategoryLabel(grail.category)}</span>
                     <span className="flex items-center gap-1"><Eye className="w-3 h-3" />{grail.views}</span>
                     <span className="flex items-center gap-1"><Package className="w-3 h-3" />{grail._count.offers} offers</span>
                     {grail.recentOffers > 0 && (
-                      <span className="text-orange-600 font-semibold">🔥 {grail.recentOffers} this week</span>
+                      <span className="text-orange-400 font-semibold">🔥 {grail.recentOffers} this week</span>
                     )}
                   </div>
                 </div>
@@ -126,8 +126,8 @@ export default async function TrendingPage() {
                 {/* GrailScore + budget */}
                 <div className="flex-shrink-0 flex items-center gap-4">
                   <div className="text-right hidden sm:block">
-                    <div className="text-sm font-semibold text-yellow-600">{formatCurrency(grail.budgetMin)}–{formatCurrency(grail.budgetMax)}</div>
-                    <div className="text-xs text-slate-400">{formatTimeAgo(grail.createdAt)}</div>
+                    <div className="text-sm font-semibold text-orange-500">{formatCurrency(grail.budgetMin)}–{formatCurrency(grail.budgetMax)}</div>
+                    <div className="text-xs text-neutral-500">{formatTimeAgo(grail.createdAt)}</div>
                   </div>
                   <GrailScoreBadge score={grail.score} size="md" showLabel />
                 </div>
@@ -138,7 +138,7 @@ export default async function TrendingPage() {
       )}
 
       <div className="text-center mt-8">
-        <Link href="/grails" className="inline-flex items-center gap-2 text-sm font-medium text-yellow-600 hover:text-yellow-700">
+        <Link href="/grails" className="inline-flex items-center gap-2 text-sm font-medium text-orange-500 hover:text-orange-400">
           Browse all grails <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
